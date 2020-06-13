@@ -10,7 +10,7 @@ class RandomWords
 	static std::string getWord()
 	{
 		//where the file is
-		const std::string path = "C:\\Users\\crown\\OneDrive\\Desktop\\playground\\Practice\\Debug\\words.txt";
+		const std::string path = "words.txt"; //"C:\\Users\\crown\\OneDrive\\Desktop\\playground\\Practice\\Debug\\words.txt";
 
 		//makes the input stream for the file
 		std::ifstream ifs(path, std::ifstream::in);
