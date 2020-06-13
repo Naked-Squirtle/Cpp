@@ -164,7 +164,6 @@ public:
 	}
 };
 
-
 int main()
 {
 	//initializes games
