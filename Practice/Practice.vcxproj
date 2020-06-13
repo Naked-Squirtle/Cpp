@@ -134,7 +134,7 @@
     <ClInclude Include="RandomWords.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\Debug\words.txt" />
+    <Text Include="..\Resources\words.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
