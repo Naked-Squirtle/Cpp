@@ -17,7 +17,6 @@ public:
 	int getID() {return gameID;}
 	virtual void play() {cout << "\nPlaying game...\n" << endl;}
 };
-
 //Initialize static member of class Game
 int Game::totalGames = 0;
 

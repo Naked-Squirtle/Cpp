@@ -6,16 +6,17 @@
 
 class HiddenGuess
 {
-	static std::string loadWord();
+	const std::string loadWord();
+	const std::string word = loadWord();
 	bool guessed = false;
 public:
 	
 	std::string getHint(std::string);
-	std::string getWord() {return loadWord();}
+	std::string getWord() {return word;}
 	bool isGuessed() {return guessed;}
 };
 
-std::string HiddenGuess::loadWord()
+const std::string HiddenGuess::loadWord()
 {
 	//where the file is
 	std::string path = "Resources\\words.txt";
@@ -47,7 +48,6 @@ std::string HiddenGuess::loadWord()
 
 std::string HiddenGuess::getHint(std::string guess)
 {
-	std::string word = loadWord();
 	std::string output;
 
 	//only processes the guess if it's the same length as the word
