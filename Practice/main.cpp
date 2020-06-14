@@ -1,5 +1,5 @@
 ﻿#include <iostream>
-#include "randomwords.h"
+#include "hiddenguess.h"
 using namespace std;
 
 class Game
@@ -21,60 +21,6 @@ public:
 //Initialize static member of class Game
 int Game::totalGames = 0;
 
-class HiddenGuess
-{
-	string word = RandomWords::getWord();
-	bool guessed = false;
-public:
-	string getHint(string guess)
-	{
-		string output;
-
-		//only processes the guess if it's the same length as the word
-		if (guess.length() < word.length())
-			output = "Too short!";
-
-		else if (guess.length() > word.length())
-			output = "Too long!";
-
-		//goes through the guess and sees if anything is matching
-		else 
-		{
-			for (unsigned int i = 0; i < word.length(); i++)
-			{
-				char guessChar = guess[i];
-
-				//if it is in the word
-				if (word.find(guessChar) != string::npos)
-				{
-					//if it is in the same spot
-					if (guessChar == word[i])
-						output += guessChar;
-					else // not in the same spot
-						output += "*";
-				}
-				else
-					output += "_";
-			}
-
-			//check if the word is finished
-			if (output == word)
-				guessed = true;
-		}
-
-		return output;
-	}
-
-	string getWord()
-	{
-		return word;
-	}
-
-	bool isGuessed()
-	{
-		return guessed;
-	}
-};
 
 class GuessingGame: public Game
 {
@@ -117,7 +63,7 @@ public:
 		{
 			HiddenGuess* guess = new HiddenGuess();
 
-			//the times it takes for the guess
+			//the starting time for the guess
 			clock_t guessTime = clock();
 
 			//creates a numbered list where user can input their guesses
@@ -132,7 +78,7 @@ public:
 
 				if (guess->isGuessed())
 				{
-					guessTime = clock() - guessTime; // the time difference from when the user started and guessed the correct answer
+					guessTime = clock() - guessTime; // the time difference between when the user started and guessed the correct answer
 					break;
 				}
 			}
@@ -152,9 +98,9 @@ public:
 	}
 };
 
+
 int main()
 {
-	cout << RandomWords::getWord() << endl;
 	
 	/*
 	//initializes games
