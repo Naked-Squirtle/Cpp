@@ -4,30 +4,18 @@ using namespace std;
 
 class Game
 {
-private:
+protected:
 	int gameID;
 	string title;
 public:
 	static int totalGames;
-	Game() : title("TITLE") { totalGames++; gameID = totalGames; }
-	Game(const string& title)
-	{
-		this->title = title;
-		totalGames++;
-		gameID = totalGames;
-	}
-	int getID()
-	{
-		return gameID;
-	}
-	void print()
-	{
-		cout << gameID << ". " << title << endl;
-	}
-	void play()
-	{
-		cout << "\nPlaying game ...\n" << endl;
-	}
+	Game() : title("TITLE"), gameID(++totalGames) {}
+	Game(const string& t) : title(t), gameID(++totalGames) {}
+	
+	//methods
+	void print() {cout << gameID << ". " << title << endl;}
+	int getID() {return gameID;}
+	virtual void play() {cout << "\nPlaying game...\n" << endl;}
 };
 
 //Initialize static member of class Game
@@ -132,7 +120,7 @@ public:
 			//the times it takes for the guess
 			clock_t guessTime = clock();
 
-			//outputs text based on input
+			//creates a numbered list where user can input their guesses
 			for (int j = 0; j < total_tries; j++)
 			{
 				string input;
@@ -144,17 +132,17 @@ public:
 
 				if (guess->isGuessed())
 				{
-					guessTime = clock() - guessTime; // the new time is the difference between the present and starting time
+					guessTime = clock() - guessTime; // the time difference from when the user started and guessed the correct answer
 					break;
 				}
 			}
 
-			//shows time to get correct answer
+			//If the user guesses correctly then they are shown the time it took them to complete it
 			if (guess->isGuessed())
 			{
 				printf("It took you %.1f seconds to get the right answer.\n", ((float)guessTime) / CLOCKS_PER_SEC);
 			}
-			//says what the word was
+			//If the user didn't guess the right word then they are given the correct word
 			else
 				cout << "The word was: " << guess->getWord() << endl;
 			if (i < total_guesses - 1)
@@ -166,43 +154,51 @@ public:
 
 int main()
 {
+	cout << RandomWords::getWord() << endl;
+	
+	/*
 	//initializes games
-	GuessingGame game1;
-	Game test("Just a test");
-
+	Game* gamePtr1 = new GuessingGame;
+	Game* gamePtr2 = new Game("Just a test");
+	Game* gamePtr3 = new Game("Also a test");
 
 	//where all the games are stored
-	vector<Game> games;
-	games.push_back(game1);
-	games.push_back(test);
-
+	vector<Game*> all_games;
+	all_games.push_back(gamePtr1);
+	all_games.push_back(gamePtr2);
+	all_games.push_back(gamePtr3);
+	
+	//option by default is set to the last one so the user can quit
 	int option = Game::totalGames + 1;
 
 	do
 	{
 		//prints games
-		for (auto g : games)
+		for (int i = 0; i < Game::totalGames; i++)
 		{
-			g.print();
+			all_games.at(i)->print();
 		}
 
 		//prints exit prompt
 		cout << Game::totalGames + 1 << ". Exit" << endl;
 
 		//user picks game
-		while (!(cin >> option) && option <= Game::totalGames + 1)
+		while (!(cin >> option) && option <= Game::totalGames + 1 && option > 0)
 		{
 			cout << "Error Enter Number again" << endl;
 			cin.clear();
 		}
 		
 		//plays game
-		for (auto g : games)
+		for (int i = 0; i < Game::totalGames; i++)
 		{
-			if(g.getID() == option)
-				g.play();
+			if (all_games.at(i)->getID() == option)
+			{
+				all_games.at(i)->play();
+			}
 		}
 
 	} while (option < Game::totalGames + 1);
 	cout << "\nThanks for Playing!" << endl;
+	*/
 }
