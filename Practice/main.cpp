@@ -21,7 +21,6 @@ public:
 //Initialize static member of class Game
 int Game::totalGames = 0;
 
-
 class GuessingGame: public Game
 {
 public:
@@ -101,8 +100,6 @@ public:
 
 int main()
 {
-	
-	/*
 	//initializes games
 	Game* gamePtr1 = new GuessingGame;
 	Game* gamePtr2 = new Game("Just a test");
@@ -146,5 +143,5 @@ int main()
 
 	} while (option < Game::totalGames + 1);
 	cout << "\nThanks for Playing!" << endl;
-	*/
+	
 }
