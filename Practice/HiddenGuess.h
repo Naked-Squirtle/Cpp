@@ -6,11 +6,11 @@
 
 class HiddenGuess
 {
-	static std::string loadWord() {}
+	static std::string loadWord();
 	bool guessed = false;
 public:
 	
-	std::string getHint(std::string) {}
+	std::string getHint(std::string);
 	std::string getWord() {return loadWord();}
 	bool isGuessed() {return guessed;}
 };
