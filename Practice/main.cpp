@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <algorithm>
 #include "hiddenguess.h"
 using namespace std;
 
@@ -70,7 +71,7 @@ public:
 				string input;
 				cout << j + 1 << ") ";
 				cin >> input;
-
+				std::transform(input.begin(), input.end(), input.begin(), [](unsigned char c) -> unsigned char {return std::tolower(c); });
 				string answer = guess->getHint(input);
 				cout << answer << "\n";
 
@@ -88,7 +89,7 @@ public:
 			}
 			//If the user didn't guess the right word then they are given the correct word
 			else
-				cout << "The word was: " << guess->getWord() << endl;
+				cout << "\nThe word was: " << guess->getWord() << endl;
 			if (i < total_guesses - 1)
 				cout << "\nNext Guess!\n" << endl;
 			delete guess;				// deletes the content that guess points to

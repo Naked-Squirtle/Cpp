@@ -3,6 +3,7 @@
 #include <time.h>
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 
 class HiddenGuess
 {
@@ -41,6 +42,11 @@ const std::string HiddenGuess::loadWord()
 	std::srand((unsigned int)(time(NULL)));
 	int randomIndex = rand() % wordList.size();
 	word = wordList.at(randomIndex);
+
+	//makes the word lower case
+	std::transform(word.begin(), word.end(), word.begin(), [](unsigned char c) -> unsigned char { return std::tolower(c); });
+	
+	//clears the list
 	wordList.clear();
 
 	return word;
@@ -52,10 +58,10 @@ std::string HiddenGuess::getHint(std::string guess)
 
 	//only processes the guess if it's the same length as the word
 	if (guess.length() < word.length())
-		output = "Too short!";
+		output = "Too short!\n";
 
 	else if (guess.length() > word.length())
-		output = "Too long!";
+		output = "Too long!\n";
 
 	//goes through the guess and sees if anything is matching
 	else
@@ -69,7 +75,10 @@ std::string HiddenGuess::getHint(std::string guess)
 			{
 				//if it is in the same spot
 				if (guessChar == word[i])
+				{
+					std::tolower((unsigned char)guessChar);
 					output += guessChar;
+				}
 				else // not in the same spot
 					output += "*";
 			}
