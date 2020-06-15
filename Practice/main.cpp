@@ -8,6 +8,7 @@ class Game
 protected:
 	int gameID;
 	string title;
+	string line = "-------------------------------------------------------------------------------------";
 public:
 	static int totalGames;
 	Game() : title("TITLE"), gameID(++totalGames) {}
@@ -31,7 +32,6 @@ public:
 		int total_tries;
 
 		//introduction for the user
-		const string line = "-------------------------------------------------------------------------------------";
 		cout << line << "\nWelcome to Word Guesser!\n" << line << endl;
 		cout << "\nHow to Play:\n" << "_ | means that the letter is not in the word\n"
 			<< "* | means that the letter is in the word but not in the spot\n"
@@ -85,7 +85,7 @@ public:
 			//If the user guesses correctly then they are shown the time it took them to complete it
 			if (guess->isGuessed())
 			{
-				printf("It took you %.1f seconds to get the right answer.\n", ((float)guessTime) / CLOCKS_PER_SEC);
+				printf("It took you %.1f seconds to get the right answer.\n\n", ((float)guessTime) / CLOCKS_PER_SEC);
 			}
 			//If the user didn't guess the right word then they are given the correct word
 			else

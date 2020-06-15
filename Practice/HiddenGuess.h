@@ -90,5 +90,5 @@ std::string HiddenGuess::getHint(std::string guess)
 		if (output == word)
 			guessed = true;
 	}
-	return output;
+	return output + "\n";
 }
