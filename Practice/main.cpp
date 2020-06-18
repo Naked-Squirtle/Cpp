@@ -85,7 +85,10 @@ public:
 			//If the user guesses correctly then they are shown the time it took them to complete it
 			if (guess->isGuessed())
 			{
-				printf("It took you %.1f seconds to get the right answer.\n\n", ((float)guessTime) / CLOCKS_PER_SEC);
+				int min = (int)(((float)guessTime) / CLOCKS_PER_SEC) / 60;
+				int sec = (int)(((float)guessTime) / CLOCKS_PER_SEC) % 60;
+				cout << "You took " << min << ":"; if (sec < 10) { cout << 0; } 
+				cout << sec << " to get the right answer." << endl;
 			}
 			//If the user didn't guess the right word then they are given the correct word
 			else
@@ -125,9 +128,9 @@ int main()
 		cout << Game::totalGames + 1 << ". Exit" << endl;
 
 		//user picks game
-		while (!(cin >> option) && option <= Game::totalGames + 1 && option > 0)
+		while (!(cin >> option) || option > Game::totalGames + 1 || option <= 0)
 		{
-			cout << "Error Enter Number again" << endl;
+			cout << "\nError: Enter valid number: ";
 			cin.clear();
 		}
 		
