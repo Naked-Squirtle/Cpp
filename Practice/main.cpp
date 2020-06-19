@@ -88,13 +88,13 @@ public:
 				int min = (int)(((float)guessTime) / CLOCKS_PER_SEC) / 60;
 				int sec = (int)(((float)guessTime) / CLOCKS_PER_SEC) % 60;
 				cout << "You took " << min << ":"; if (sec < 10) { cout << 0; } 
-				cout << sec << " to get the right answer." << endl;
+				cout << sec << " to get the right answer.\n" << endl;
 			}
 			//If the user didn't guess the right word then they are given the correct word
 			else
-				cout << "\nThe word was: " << guess->getWord() << endl;
+				cout << "The word was: " << guess->getWord() << endl << endl;
 			if (i < total_guesses - 1)
-				cout << "\nNext Guess!\n" << endl;
+				cout << "Next Guess!\n" << endl;
 			delete guess;				// deletes the content that guess points to
 		}
 	}
@@ -113,7 +113,7 @@ int main()
 	all_games.push_back(gamePtr2);
 	all_games.push_back(gamePtr3);
 	
-	//option by default is set to the last one so the user can quit
+	//option by default is set to the last one so the user can quit;
 	int option = Game::totalGames + 1;
 
 	do
@@ -128,11 +128,13 @@ int main()
 		cout << Game::totalGames + 1 << ". Exit" << endl;
 
 		//user picks game
+		cout << "Enter a number: ";
 		while (!(cin >> option) || option > Game::totalGames + 1 || option <= 0)
 		{
 			cout << "\nError: Enter valid number: ";
 			cin.clear();
 		}
+		cout << endl;
 		
 		//plays game
 		for (int i = 0; i < Game::totalGames; i++)
@@ -144,6 +146,7 @@ int main()
 		}
 
 	} while (option < Game::totalGames + 1);
-	cout << "\nThanks for Playing!" << endl;
-	
+
+	all_games.clear();
+	cout << "Thanks for Playing!" << endl;
 }

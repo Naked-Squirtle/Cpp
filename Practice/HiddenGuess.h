@@ -58,10 +58,10 @@ std::string HiddenGuess::getHint(std::string guess)
 
 	//only processes the guess if it's the same length as the word
 	if (guess.length() < word.length())
-		output = "Too short!\n";
+		output = "Too short!";
 
 	else if (guess.length() > word.length())
-		output = "Too long!\n";
+		output = "Too long!";
 
 	//goes through the guess and sees if anything is matching
 	else
