@@ -1,6 +1,9 @@
 ﻿#include <iostream>
 #include <algorithm>
 #include "hiddenguess.h"
+//dictionary headers
+#include <unordered_map>
+#include <sstream>
 using namespace std;
 
 class Game
@@ -112,6 +115,8 @@ public:
 
 int main()
 {
+	unordered_map<string, string> dictionary;
+	/*
 	//initializes games
 	Game* gamePtr1 = new GuessingGame;
 	Game* gamePtr2 = new Game("Just a test");
@@ -155,4 +160,5 @@ int main()
 
 	all_games.clear();
 	cout << "Thanks for Playing!" << endl;
+	*/
 }
