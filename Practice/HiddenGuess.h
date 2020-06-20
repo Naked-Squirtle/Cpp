@@ -83,7 +83,7 @@ std::string HiddenGuess::getHint(std::string guess)
 					output += "*";
 			}
 			else
-				output += "_";
+				output += "#";
 		}
 
 		//check if the word is finished

@@ -33,7 +33,7 @@ public:
 
 		//introduction for the user
 		cout << line << "\nWelcome to Word Guesser!\n" << line << endl;
-		cout << "\nHow to Play:\n" << "_ | means that the letter is not in the word\n"
+		cout << "\nHow to Play:\n" << "# | means that the letter is not in the word\n"
 			<< "* | means that the letter is in the word but not in the spot\n"
 			<< "a | when you see a letter then it's in the right spot\n"
 			<< line << endl;
@@ -100,6 +100,16 @@ public:
 	}
 };
 
+class DictionaryGame: public Game
+{
+public:
+	DictionaryGame() : Game("Recursive Dictionary") {}
+	void play()
+	{
+		
+	}
+};
+
 int main()
 {
 	//initializes games
@@ -119,17 +129,15 @@ int main()
 	do
 	{
 		//prints games
-		for (int i = 0; i < Game::totalGames; i++)
-		{
-			all_games.at(i)->print();
-		}
+		for (const auto& g : all_games)
+			g->print();
 
 		//prints exit prompt
 		cout << Game::totalGames + 1 << ". Exit" << endl;
 
 		//user picks game
-		cout << "Enter a number: ";
-		while (!(cin >> option) || option > Game::totalGames + 1 || option <= 0)
+		cout << "Select an option: ";
+		while( !(cin >> option) || option <= 0 || option > Game::totalGames + 1)
 		{
 			cout << "\nError: Enter valid number: ";
 			cin.clear();
@@ -137,12 +145,10 @@ int main()
 		cout << endl;
 		
 		//plays game
-		for (int i = 0; i < Game::totalGames; i++)
+		for (const auto& g : all_games)
 		{
-			if (all_games.at(i)->getID() == option)
-			{
-				all_games.at(i)->play();
-			}
+			if (g->getID() == option)
+				g->play();
 		}
 
 	} while (option < Game::totalGames + 1);
