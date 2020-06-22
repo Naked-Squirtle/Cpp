@@ -115,8 +115,8 @@ public:
 
 int main()
 {
-	unordered_map<string, string> dictionary;
-	/*
+	//unordered_map<string, string> dictionary;
+	
 	//initializes games
 	Game* gamePtr1 = new GuessingGame;
 	Game* gamePtr2 = new Game("Just a test");
@@ -160,5 +160,5 @@ int main()
 
 	all_games.clear();
 	cout << "Thanks for Playing!" << endl;
-	*/
+	
 }
