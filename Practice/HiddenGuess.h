@@ -7,8 +7,8 @@
 
 class HiddenGuess
 {
-	const std::string loadWord();
-	const std::string word = loadWord();
+	const std::string getRandWord();
+	const std::string word = getRandWord();
 	bool guessed = false;
 public:
 	
@@ -17,7 +17,7 @@ public:
 	bool isGuessed() {return guessed;}
 };
 
-const std::string HiddenGuess::loadWord()
+std::vector<std::string> loadWords()
 {
 	//where the file is
 	std::string path = "Resources\\words.txt";
@@ -38,6 +38,14 @@ const std::string HiddenGuess::loadWord()
 	}
 	ifs.close();
 
+	return wordList;
+}
+
+std::vector<std::string> wordList = loadWords();
+
+const std::string HiddenGuess::getRandWord()
+{
+	std::string word;
 	//picks a random word
 	std::srand((unsigned int)(time(NULL)));
 	int randomIndex = rand() % wordList.size();
@@ -45,7 +53,7 @@ const std::string HiddenGuess::loadWord()
 
 	//makes the word lower case
 	std::transform(word.begin(), word.end(), word.begin(), [](unsigned char c) -> unsigned char { return std::tolower(c); });
-	
+
 	//clears the list
 	wordList.clear();
 
