@@ -5,18 +5,7 @@
 #include <fstream>
 #include <algorithm>
 
-class HiddenGuess
-{
-	const std::string getRandWord();
-	const std::string word = getRandWord();
-	bool guessed = false;
-public:
-	
-	std::string getHint(std::string);
-	std::string getWord() {return word;}
-	bool isGuessed() {return guessed;}
-};
-
+//loads the word list before anything else lol
 std::vector<std::string> loadWords()
 {
 	//where the file is
@@ -40,8 +29,19 @@ std::vector<std::string> loadWords()
 
 	return wordList;
 }
-
 std::vector<std::string> wordList = loadWords();
+
+class HiddenGuess
+{
+	const std::string getRandWord();
+	const std::string word = getRandWord();
+	bool guessed = false;
+public:
+	
+	std::string getHint(std::string);
+	std::string getWord() {return word;}
+	bool isGuessed() {return guessed;}
+};
 
 const std::string HiddenGuess::getRandWord()
 {
@@ -53,9 +53,6 @@ const std::string HiddenGuess::getRandWord()
 
 	//makes the word lower case
 	std::transform(word.begin(), word.end(), word.begin(), [](unsigned char c) -> unsigned char { return std::tolower(c); });
-
-	//clears the list
-	wordList.clear();
 
 	return word;
 }
