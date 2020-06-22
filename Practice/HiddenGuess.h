@@ -27,9 +27,15 @@ std::vector<std::string> loadWords()
 	}
 	ifs.close();
 
+	//sets random seed based on time: will be used to get a random word if needed
+	unsigned int seed = time(NULL);
+	std::srand(seed);
+
 	return wordList;
 }
 std::vector<std::string> wordList = loadWords();
+
+
 
 class HiddenGuess
 {
@@ -47,7 +53,6 @@ const std::string HiddenGuess::getRandWord()
 {
 	std::string word;
 	//picks a random word
-	std::srand((unsigned int)(time(NULL)));
 	int randomIndex = rand() % wordList.size();
 	word = wordList.at(randomIndex);
 
