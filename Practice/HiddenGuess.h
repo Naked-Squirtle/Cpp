@@ -35,8 +35,6 @@ std::vector<std::string> loadWords()
 }
 std::vector<std::string> wordList = loadWords();
 
-
-
 class HiddenGuess
 {
 	const std::string getRandWord();
