@@ -109,7 +109,15 @@ public:
 	DictionaryGame() : Game("Recursive Dictionary") {}
 	void play()
 	{
-		
+		cout << line << "\nWelcome to Recursive Dictionary!\n" << line << endl;
+		cout << "This game highlights the fundamental recursive nature of a dictionary.\n"
+			<< "Essentially, it gives definitions of a definition of a definitions ... etc." << endl;
+
+		cout << "Type in the word you want to use: ";
+		//gets input of word
+		cout << "Type in how many definitions of definitions (recursion) you want\n"
+			<< "For example typing in 0 would just give the definition of the word"
+		//gets number of recursions
 	}
 };
 
