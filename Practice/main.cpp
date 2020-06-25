@@ -111,20 +111,49 @@ public:
 	{
 		cout << line << "\nWelcome to Recursive Dictionary!\n" << line << endl;
 		cout << "This game highlights the fundamental recursive nature of a dictionary.\n"
-			<< "Essentially, it gives definitions of a definition of a definitions ... etc." << endl;
+			<< "Essentially, it gives a definition of a definition of a definitions ... etc." << endl;
 
 		cout << "Type in the word you want to use: ";
 		//gets input of word
+		string word;
+
 		cout << "Type in how many definitions of definitions (recursion) you want\n"
-			<< "For example typing in 0 would just give the definition of the word"
+			<< "For example typing in 0 would just give the definition of the word";
 		//gets number of recursions
+		int recursion;
+
+		//when all that stuff is done
+		
 	}
 };
 
+string recur(const unordered_map<string,string> dict, string words, int times)
+{
+	if (times <= 0)
+		return "";
+
+	string word;
+	string partDefinition;
+	string output;
+	while (getline(stringstream(words), word, ' ')) {
+		partDefinition = dict.at(word);
+		output.append(partDefinition); //+ ' ');
+	}
+
+	
+	return output + recur(dict, output, --times);
+}
+
 int main()
 {
-	//unordered_map<string, string> dictionary;
+	unordered_map<string, string> dictionary;
+	dictionary.emplace("eye", "visual organ");
+	dictionary.emplace("visual", "seeing something");
+	dictionary.emplace("organ", "a group of specialized cells serving a biological function");
+
+	cout << recur(dictionary, "eye", 1);
 	
+	/*
 	//initializes games
 	Game* gamePtr1 = new GuessingGame;
 	Game* gamePtr2 = new Game("Just a test");
@@ -168,5 +197,5 @@ int main()
 
 	all_games.clear();
 	cout << "Thanks for Playing!" << endl;
-	
+	*/
 }
