@@ -127,21 +127,18 @@ public:
 	}
 };
 
-string recur(const unordered_map<string,string> dict, string words, int times)
+string dictRecur(const unordered_map<string,string>& dict, string words, int times)
 {
-	if (times <= 0)
-		return "";
-
-	string word;
-	string partDefinition;
-	string output;
-	while (getline(stringstream(words), word, ' ')) {
-		partDefinition = dict.at(word);
-		output.append(partDefinition); //+ ' ');
+	string definition;
+	stringstream stream(words);
+	char delim = ' ';
+	for (string word; getline(stream, word, delim);) {
+		definition.append(dict.at(word) + " ");
 	}
-
-	
-	return output + recur(dict, output, --times);
+	if (times <= 0)
+		return definition;
+	else
+		return dictRecur(dict, definition, --times);
 }
 
 int main()
@@ -151,8 +148,7 @@ int main()
 	dictionary.emplace("visual", "seeing something");
 	dictionary.emplace("organ", "a group of specialized cells serving a biological function");
 
-	cout << recur(dictionary, "eye", 1);
-	
+	cout << dictRecur(dictionary, "eye", 1) << endl;
 	/*
 	//initializes games
 	Game* gamePtr1 = new GuessingGame;
