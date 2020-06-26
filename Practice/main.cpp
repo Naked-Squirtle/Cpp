@@ -127,7 +127,7 @@ public:
 	}
 };
 
-string dictRecur(const unordered_map<string,string>& dict, string words, int times)
+string dictRecur(const unordered_map<string,string> &dict, string words, int times)
 {
 	string definition;
 	stringstream stream(words);
